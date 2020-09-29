@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Bureaucrat.hpp                                     :+:    :+:            */
+/*   Form.hpp                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/09/29 12:51:40 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 14:24:05 by tblaudez      ########   odam.nl         */
+/*   Created: 2020/09/29 13:47:29 by tblaudez      #+#    #+#                 */
+/*   Updated: 2020/09/29 14:56:15 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
+#include "Bureaucrat.hpp"
+
 #include <iostream>
-#include <stdexcept>
 #include <string>
+#include <stdexcept>
 
 
-class Bureaucrat {
+class Form {
 
 public:
 
-	Bureaucrat(std::string const& name="Robert", int grade=150);
-	Bureaucrat(Bureaucrat const& src);
-	Bureaucrat& operator=(Bureaucrat const& rhs);
-	~Bureaucrat();
+	Form(std::string name="Form", int signingGrade=150, int executingGrade=150);
+	Form(Form const& src);
+	Form& operator=(Form const& rhs);
+	~Form();
 
 	std::string const&	getName() const;
-	int					getGrade() const;
+	int					getSigningGrade() const;
+	int					getExecutingGrade() const;
+	bool				getSigned() const;
 
-	void				incrementGrade();
-	void				decrementGrade();
+	void				beSigned(Bureaucrat const& bureaucrat);
 
 	class GradeTooHighException : public std::runtime_error {
 		public:
@@ -47,11 +50,13 @@ public:
 
 private:
 
-	void				_check_grade() const;
+	std::string	_name;
+	int const	_signingGrade;
+	int const	_executingGrade;
+	bool		_signed;
 
-	std::string const	_name;
-	int					_grade;
+	void		_checkGrade() const;
 
 };
 
-std::ostream&	operator<<(std::ostream& o, Bureaucrat const& i);
+std::ostream&	operator<<(std::ostream& o, Form const& i);

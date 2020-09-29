@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:51:40 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 14:24:05 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/09/29 15:04:01 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+
+
+class Form; // Forward declaration
 
 
 class Bureaucrat {
@@ -32,6 +35,7 @@ public:
 
 	void				incrementGrade();
 	void				decrementGrade();
+	void				signForm(Form& form) const;
 
 	class GradeTooHighException : public std::runtime_error {
 		public:

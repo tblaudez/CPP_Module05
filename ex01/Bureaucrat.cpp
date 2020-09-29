@@ -6,11 +6,12 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:59:45 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 14:23:54 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/09/29 15:03:57 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 #include <iostream>
 
@@ -73,6 +74,21 @@ void				Bureaucrat::decrementGrade() {
 
 	this->_grade += 1;
 	this->_check_grade();
+}
+
+
+void				Bureaucrat::signForm(Form& form) const {
+
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signs form <" << form.getName() << '>'
+		<< std::endl;
+	}
+	catch(Form::GradeTooLowException& e) {
+		std::cerr << "Warning : " << this->_name << " cannot sign form <"
+		<< form.getName() << "> because their grade is too low" << std::endl;
+	}
 }
 
 
