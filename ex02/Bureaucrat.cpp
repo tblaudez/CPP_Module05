@@ -6,11 +6,12 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:59:45 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 16:52:06 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/09/29 16:50:27 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 #include <iostream>
 
@@ -73,6 +74,34 @@ void				Bureaucrat::decrementGrade() {
 
 	this->_grade += 1;
 	this->_check_grade();
+}
+
+
+void				Bureaucrat::signForm(Form& form) const {
+
+	try
+	{
+		std::cout << this->_name << " signs form <" << form.getName() << '>'
+		<< std::endl;
+		form.beSigned(*this);
+	}
+	catch (std::exception& e) {
+		std::cerr << "Warning : " << e.what() << std::endl;
+	}
+}
+
+
+void				Bureaucrat::executeForm(Form const& form) const {
+
+	try
+	{
+		std::cout << this->_name << " executes form <" << form.getName()
+		<< ">" << std::endl;
+		form.execute(*this);
+	}
+	catch (std::exception& e) {
+		std::cerr << "Warning : " << e.what() << std::endl;
+	}
 }
 
 

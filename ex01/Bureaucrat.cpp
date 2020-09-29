@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:59:45 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 15:03:57 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/09/29 16:50:18 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,12 @@ void				Bureaucrat::signForm(Form& form) const {
 
 	try
 	{
-		form.beSigned(*this);
 		std::cout << this->_name << " signs form <" << form.getName() << '>'
 		<< std::endl;
+		form.beSigned(*this);
 	}
-	catch(Form::GradeTooLowException& e) {
-		std::cerr << "Warning : " << this->_name << " cannot sign form <"
-		<< form.getName() << "> because their grade is too low" << std::endl;
+	catch (std::exception& e) {
+		std::cerr << "Warning : " << e.what() << std::endl;
 	}
 }
 
@@ -95,8 +94,8 @@ void				Bureaucrat::signForm(Form& form) const {
 void				Bureaucrat::_check_grade() const {
 
 	if (this->_grade < 1) {
-		throw Bureaucrat::GradeTooHighException(this->_name + "has a grade below 1");
+		throw Bureaucrat::GradeTooHighException(this->_name + " has a grade below 1");
 	} else if (this->_grade > 150) {
-		throw Bureaucrat::GradeTooLowException(this->_name + "has a grade above 150");
+		throw Bureaucrat::GradeTooLowException(this->_name + " has a grade above 150");
 	}
 }
