@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 11:14:05 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:28:54 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/01 13:10:41 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ AForm*	Intern::makeForm(std::string const& formName, std::string const& target) 
 		}
 	}
 
-	if (form == NULL) {
-		std::cerr << "Error : Unknown Form : " << formName << std::endl;
-	} else {
+	if (form != NULL) {
 		std::cout << "Intern creates " << *form << std::endl;
 	}
 
