@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 13:10:18 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:51:17 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/01 13:43:59 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,27 @@ void	OfficeBlock::setIntern(Intern* intern) {
 
 void	OfficeBlock::doBureaucracy(std::string const& formName, std::string const& target) {
 
+	this->_check_workers();
+
 	AForm*	form = this->_intern->makeForm(formName, target);
 	if (form == NULL) {
-		return;
+		throw OfficeBlock::UnknownFormException("The form <" + formName + "> is unknown");
 	}
 
 	this->_signingBureaucrat->signForm(*form);
 	this->_executingBureaucrat->executeForm(*form);
 
 	std::cout << "-------- Form Complete --------" << std::endl;
+}
+
+
+void	OfficeBlock::_check_workers() const {
+
+	if (this->_signingBureaucrat == NULL) {
+		throw OfficeBlock::MissingWorkerException("The Office Block is missing its signing Bureaucrat");
+	} else if (this->_executingBureaucrat == NULL) {
+		throw OfficeBlock::MissingWorkerException("The Office Block is missing its executing Bureaucrat");
+	} else if (this->_intern == NULL) {
+		throw OfficeBlock::MissingWorkerException("The Office Block is missing its intern");
+	}
 }
