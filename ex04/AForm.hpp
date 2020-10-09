@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 13:47:29 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:36:17 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:05:50 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include "Bureaucrat.hpp"
 
-#include <iostream>
-#include <string>
-#include <stdexcept>
+#include <stdexcept> // runtime_error
+#include <string> // duh..
+#include <ostream> // duh..
 
 
 class AForm {
@@ -36,7 +36,6 @@ public:
 
 	void				beSigned(Bureaucrat const& bureaucrat);
 	virtual void		execute(Bureaucrat const& executor) const;
-	virtual void		print(std::ostream& o) const = 0;
 
 	class GradeTooHighException : public std::runtime_error {
 		public:
@@ -58,12 +57,14 @@ public:
 
 private:
 
+	void				_checkGrade() const;
+	virtual void		_action() const = 0;
+
 	std::string const	_name;
 	int const			_signingGrade;
 	int const			_executingGrade;
 	bool				_signed;
 
-	void				_checkGrade() const;
 };
 
 std::ostream&	operator<<(std::ostream& o, AForm const& i);

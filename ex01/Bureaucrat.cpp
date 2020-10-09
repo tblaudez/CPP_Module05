@@ -6,14 +6,14 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:59:45 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 16:50:18 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:42:30 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-#include <iostream>
+#include <iostream> // cout
 
 
 Bureaucrat::Bureaucrat(std::string const& name, int grade) : _name(name),

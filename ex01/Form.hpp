@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 13:47:29 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 14:56:15 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 11:58:14 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 #include "Bureaucrat.hpp"
 
-#include <iostream>
-#include <string>
-#include <stdexcept>
+#include <stdexcept> // runtime_error
+#include <string> // duh..
+#include <ostream> // duh..
 
 
 class Form {
 
 public:
 
-	Form(std::string name="Form", int signingGrade=150, int executingGrade=150);
+	Form(std::string const& name="Form", int signingGrade=150, int executingGrade=150);
 	Form(Form const& src);
 	Form& operator=(Form const& rhs);
 	~Form();
@@ -50,12 +50,12 @@ public:
 
 private:
 
-	std::string	_name;
-	int const	_signingGrade;
-	int const	_executingGrade;
-	bool		_signed;
-
 	void		_checkGrade() const;
+
+	std::string const	_name;
+	int const			_signingGrade;
+	int const			_executingGrade;
+	bool				_signed;
 
 };
 

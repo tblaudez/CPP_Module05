@@ -6,14 +6,14 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:59:45 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 16:50:27 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:43:20 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
-#include <iostream>
+#include <iostream> // cout
 
 
 Bureaucrat::Bureaucrat(std::string const& name, int grade) : _name(name),
@@ -77,7 +77,7 @@ void				Bureaucrat::decrementGrade() {
 }
 
 
-void				Bureaucrat::signForm(Form& form) const {
+void				Bureaucrat::signForm(AForm& form) const {
 
 	try
 	{
@@ -91,7 +91,7 @@ void				Bureaucrat::signForm(Form& form) const {
 }
 
 
-void				Bureaucrat::executeForm(Form const& form) const {
+void				Bureaucrat::executeForm(AForm const& form) const {
 
 	try
 	{

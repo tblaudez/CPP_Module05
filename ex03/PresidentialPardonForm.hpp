@@ -6,23 +6,21 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 15:19:51 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:06:58 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:57:39 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
-#include "Form.hpp"
-
-#include <iostream>
+#include "AForm.hpp"
 
 
-class PresidentialPardonForm : public Form {
+class PresidentialPardonForm : public AForm {
 
 public:
 
-	PresidentialPardonForm(std::string target="target");
+	PresidentialPardonForm(std::string const& target="target");
 	PresidentialPardonForm(PresidentialPardonForm const& src);
 	PresidentialPardonForm& operator=(PresidentialPardonForm const& rhs);
 	virtual ~PresidentialPardonForm();
@@ -31,9 +29,9 @@ public:
 
 private:
 
-	std::string	_target;
-
 	virtual void	_action() const;
+
+	std::string		_target;
 
 };
 

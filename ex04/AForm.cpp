@@ -6,14 +6,11 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 13:56:47 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:31:37 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:39:45 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
-
-#include <iostream>
-#include <sstream>
 
 
 AForm::AForm(std::string const& name, int signingGrade, int executingGrade) : _name(name),
@@ -47,7 +44,10 @@ AForm::~AForm() {
 
 std::ostream&	operator<<(std::ostream& o, AForm const& i) {
 
-	i.print(o);
+	o << "<" << i.getName()
+	<< "> - Signing Grade : " << i.getSigningGrade()
+	<< " - Executing Grade : " << i.getExecutingGrade()
+	<< " - Signed : " << std::boolalpha << i.getSigned();
 	return o;
 }
 
@@ -78,42 +78,36 @@ bool				AForm::getSigned() const {
 
 void				AForm::beSigned(Bureaucrat const& bureaucrat) {
 
-	std::ostringstream	oss;
-
-
 	if (bureaucrat.getGrade() > this->_signingGrade) {
-		oss << bureaucrat << " has too low grade to sign " << *this;
-		throw AForm::GradeTooLowException(oss.str());
+		throw AForm::GradeTooLowException(bureaucrat.getName()
+			+ " is not important enough to sign " + this->_name);
 	}
 
 	this->_signed = true;
 }
 
 
-void				AForm::execute(Bureaucrat const& executor) const {
+void				AForm::_checkGrade() const {
 
-	std::ostringstream	oss;
-
-	if (this->_signed == false) {
-		oss << *this << " is not signed yet";
-		throw AForm::FormNotSignedException(oss.str());
+	if (this->_signingGrade < 1 || this->_executingGrade < 1) {
+		throw AForm::GradeTooHighException("Form <" + this->_name
+			+ "> has a grade below 1");
 	}
-	else if (executor.getGrade() > this->_executingGrade) {
-		oss << executor << " has too low grade to execute " << *this;
-		throw AForm::GradeTooLowException(oss.str());
+	else if (this->_signingGrade > 150 || this->_executingGrade > 150) {
+		throw AForm::GradeTooLowException("Form <" + this->_name
+			+ "> has a grade above 150");
 	}
 }
 
-void				AForm::_checkGrade() const {
 
-	std::ostringstream	oss;
+void				AForm::execute(Bureaucrat const& executor) const {
 
-	if (this->_signingGrade < 1 || this->_executingGrade < 1) {
-		oss << *this << " has grade below 1";
-		throw AForm::GradeTooHighException(oss.str());
+	if (this->_signed == false) {
+		throw AForm::FormNotSignedException("Form <" + this->_name +
+		"> is not signed yet");
 	}
-	else if (this->_signingGrade > 150 || this->_executingGrade > 150) {
-		oss << *this << " has grade above 150";
-		throw AForm::GradeTooLowException(oss.str());
+	else if (executor.getGrade() > this->_executingGrade) {
+		throw AForm::GradeTooLowException(executor.getName() +
+		" has too low grade to execute form <" + this->_name + ">");
 	}
 }

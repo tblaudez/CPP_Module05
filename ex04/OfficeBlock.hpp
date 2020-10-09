@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 12:58:26 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/01 12:50:01 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:15:35 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include "Bureaucrat.hpp"
 #include "Intern.hpp"
 
+
 class OfficeBlock {
 
 public:
 
-	OfficeBlock();
-	OfficeBlock(Bureaucrat& signingBureaucrat, Bureaucrat& executingBureaucrat, Intern& intern);
+	OfficeBlock(Bureaucrat* signingBureaucrat=NULL, Bureaucrat* executingBureaucrat=NULL, Intern* intern=NULL);
 	~OfficeBlock();
 
 	void	setSigningBureaucrat(Bureaucrat* bureaucrat);
@@ -54,5 +54,3 @@ private:
 	void		_check_workers() const;
 
 };
-
-std::ostream&	operator<<(std::ostream& o, OfficeBlock const& i);

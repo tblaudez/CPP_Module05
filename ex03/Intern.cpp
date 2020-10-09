@@ -6,14 +6,16 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 11:14:05 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:51:12 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:43:02 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
 
+#include <iostream> // cout
 
-typedef Form*	(Intern::*formFunctionPointer)(std::string const& target) const;
+
+typedef AForm*	(Intern::*formFunctionPointer)(std::string const& target) const;
 
 
 Intern::Intern() {
@@ -42,48 +44,43 @@ Intern::~Intern() {
 }
 
 
-std::ostream&	operator<<(std::ostream& o, Intern const& i) {
-
-	(void)i;
-	o << "Random Intern";
-	return o;
-}
-
-
-Form*	Intern::makeForm(std::string const& formName, std::string const& target) const {
+AForm*	Intern::makeForm(std::string const& formName, std::string const& target) const {
 
 	formFunctionPointer functions[3] = {&Intern::_makePresidentialPardonForm,
 		&Intern::_makeRobotomyRequestForm, &Intern::_makeShrubberyCreationForm};
 	std::string			actions[3] = {"presidential pardon", "robotomy request",
 		"shrubbery creation"};
 
-	for (int i=0; i<3; i++) {
+	for (int i=0; i < 3; i++) {
 		if (formName == actions[i]) {
 			return (this->*functions[i])(target);
 		}
 	}
 
-	std::cerr << "Error : Unknown Form name" << std::endl;
+	std::cerr << "Error : Unknown form name" << std::endl;
 	return NULL;
 }
 
 
-Form*	Intern::_makePresidentialPardonForm(std::string const& target) const {
+AForm*	Intern::_makePresidentialPardonForm(std::string const& target) const {
 
-	std::cout << "Intern creates <PresidentialPardonForm>" << std::endl;
-	return new PresidentialPardonForm(target);
+	PresidentialPardonForm* form = new PresidentialPardonForm(target);
+	std::cout << "Intern creates " << *form << std::endl;
+	return form;
 }
 
 
-Form*	Intern::_makeRobotomyRequestForm(std::string const& target) const {
+AForm*	Intern::_makeRobotomyRequestForm(std::string const& target) const {
 
-	std::cout << "Intern creates <RobotomyRequestForm>" << std::endl;
-	return new RobotomyRequestForm(target);
+	RobotomyRequestForm* form = new RobotomyRequestForm(target);
+	std::cout << "Intern creates " << *form << std::endl;
+	return form;
 }
 
 
-Form*	Intern::_makeShrubberyCreationForm(std::string const& target) const {
+AForm*	Intern::_makeShrubberyCreationForm(std::string const& target) const {
 
-	std::cout << "Intern creates <ShrubberyCreationForm>" << std::endl;
-	return new ShrubberyCreationForm(target);
+	ShrubberyCreationForm* form = new ShrubberyCreationForm(target);
+	std::cout << "Intern creates " << *form << std::endl;
+	return form;
 }

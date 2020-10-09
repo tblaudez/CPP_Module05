@@ -6,13 +6,11 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:59:45 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 16:52:06 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 11:47:45 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
-#include <iostream>
 
 
 Bureaucrat::Bureaucrat(std::string const& name, int grade) : _name(name),

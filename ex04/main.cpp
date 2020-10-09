@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 13:18:01 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:52:08 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:40:42 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,51 @@
 #include "Bureaucrat.hpp"
 #include "OfficeBlock.hpp"
 
+#include <cstdlib> // srand
+#include <ctime> // time
+#include <iostream> // cerr
+
+
 int	main(void) {
 
-	Intern		intern;
-	Bureaucrat	joe("Joe", 67);
-	Bureaucrat	bob("Robert", 7);
+	srand(time(0));
+
 	OfficeBlock	ob;
 
-	ob.setExecutingBureaucrat(&bob);
-	ob.setSigningBureaucrat(&joe);
-	ob.setIntern(&intern);
+	ob.setExecutingBureaucrat(new Bureaucrat("Bob", 34));
+	ob.setSigningBureaucrat(new Bureaucrat("Joe", 56));
+	ob.setIntern(new Intern);
+
+	try
+	{
+		ob.doBureaucracy("duck hunt", "Donald Duck");
+	}
+	catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl << std::endl;
+	}
 
 	try
 	{
 		ob.doBureaucracy("presidential pardon", "Bob Lennon");
-		ob.doBureaucracy("shrubbery creation", "oven");
+	}
+	catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl << std::endl;
+	}
+
+	try
+	{
+		ob.doBureaucracy("shrubbery creation", "House");
+	}
+	catch (std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl << std::endl;
+	}
+
+	try
+	{
 		ob.doBureaucracy("robotomy request", "Bendy");
 	}
 	catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl << std::endl;
 	}
 
 

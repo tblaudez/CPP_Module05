@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 16:02:04 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 12:41:29 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:12:03 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	ShrubberyCreationForm(std::string target="target");
 	ShrubberyCreationForm(ShrubberyCreationForm const& src);
 	ShrubberyCreationForm& operator=(ShrubberyCreationForm const& rhs);
-	~ShrubberyCreationForm();
+	virtual ~ShrubberyCreationForm();
 
 private:
 

@@ -6,23 +6,23 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 16:03:58 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:08:18 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:00:46 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-#include <fstream>
+#include <fstream> // ofstream
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-Form("ShrubberyCreationForm", 145, 137), _target(target) {
+AForm("ShrubberyCreationForm", 145, 137), _target(target) {
 
 }
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& src) :
-Form(src) {
+AForm(src) {
 
 	*this = src;
 }
@@ -31,7 +31,7 @@ Form(src) {
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(ShrubberyCreationForm const& rhs) {
 
 	if (this != &rhs) {
-		Form::operator=(rhs);
+		AForm::operator=(rhs);
 		this->_target = rhs._target;
 	}
 
@@ -46,7 +46,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 std::ostream&	operator<<(std::ostream& o, ShrubberyCreationForm const& i) {
 
-	o << "ShrubberyCreationForm targeted to " << i.getTarget() << std::endl;
+	o << static_cast<AForm const&>(i);
+	o << " - Target : " << i.getTarget();
 	return o;
 }
 

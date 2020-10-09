@@ -6,16 +6,16 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:51:40 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 14:24:05 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 11:45:17 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
-#include <iostream>
-#include <stdexcept>
-#include <string>
+#include <stdexcept> // runtime_error
+#include <string> // duh..
+#include <ostream> // duh..
 
 
 class Bureaucrat {

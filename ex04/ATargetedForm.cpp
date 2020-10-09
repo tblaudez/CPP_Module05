@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 12:28:16 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:32:05 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:08:09 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ AForm(name, signingGrade, executingGrade), _target(target) {
 }
 
 
-ATargetedForm::ATargetedForm(ATargetedForm const& src) : AForm(src), _target(src._target) {
+ATargetedForm::ATargetedForm(ATargetedForm const& src) : AForm(src) {
 
 	*this = src;
 }
@@ -30,6 +30,7 @@ ATargetedForm&	ATargetedForm::operator=(ATargetedForm const& rhs) {
 
 	if (this != &rhs) {
 		AForm::operator=(rhs);
+		this->_target = rhs._target;
 	}
 
 	return *this;
@@ -38,6 +39,14 @@ ATargetedForm&	ATargetedForm::operator=(ATargetedForm const& rhs) {
 
 ATargetedForm::~ATargetedForm() {
 
+}
+
+
+std::ostream&	operator<<(std::ostream& o, ATargetedForm const& i) {
+
+	o << static_cast<AForm const&>(i);
+	o << " - Target : " << i.getTarget();
+	return o;
 }
 
 
@@ -51,12 +60,4 @@ void				ATargetedForm::execute(Bureaucrat const& executor) const {
 
 	AForm::execute(executor);
 	this->_action();
-}
-
-
-void				ATargetedForm::print(std::ostream& o) const {
-
-	o << "(<" << this->getName() << "> [SGrade: " << this->getSigningGrade()
-	<< ", EGrade: " << this->getExecutingGrade() << ", Signed: " << this->getSigned()
-	<< ", Target: " << this->getTarget() << "])";
 }

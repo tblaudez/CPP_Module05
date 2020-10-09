@@ -6,12 +6,15 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 14:24:25 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 15:02:15 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:42:19 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+
+#include <iostream> // cout
+
 
 int	main(void) {
 

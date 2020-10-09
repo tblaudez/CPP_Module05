@@ -6,23 +6,23 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 15:26:47 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:08:00 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:58:11 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-#include <iostream>
+#include <iostream> // cout
 
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) :
-Form("PresidentialPardonForm", 25, 5), _target(target) {
+PresidentialPardonForm::PresidentialPardonForm(std::string const& target) :
+AForm("PresidentialPardonForm", 25, 5), _target(target) {
 
 }
 
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const& src) :
-Form(src) {
+AForm(src) {
 
 	*this = src;
 }
@@ -31,7 +31,7 @@ Form(src) {
 PresidentialPardonForm&	PresidentialPardonForm::operator=(PresidentialPardonForm const& rhs) {
 
 	if (this != &rhs) {
-		Form::operator=(rhs);
+		AForm::operator=(rhs);
 		this->_target = rhs._target;
 	}
 
@@ -46,7 +46,8 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 
 std::ostream&	operator<<(std::ostream& o, PresidentialPardonForm const& i) {
 
-	o << "PresidentialPardonForm targeted on " << i.getTarget();
+	o << static_cast<AForm const&>(i);
+	o << " - Target : " << i.getTarget();
 	return o;
 }
 

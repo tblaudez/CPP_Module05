@@ -6,19 +6,19 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:51:40 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:23:19 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:40:17 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
-#include <iostream>
-#include <stdexcept>
-#include <string>
+#include <stdexcept> // runtime_error
+#include <string> // duh..
+#include <ostream> // duh..
 
 
-class AForm; // Forward declaration
+class AForm; // Forward declration
 
 
 class Bureaucrat {
@@ -35,8 +35,8 @@ public:
 
 	void				incrementGrade();
 	void				decrementGrade();
-	void				signForm(AForm& form) const;
 	void				executeForm(AForm const& form) const;
+	void				signForm(AForm& form) const;
 
 	class GradeTooHighException : public std::runtime_error {
 		public:

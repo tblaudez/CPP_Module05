@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 15:37:13 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:55:14 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:59:17 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Intern.hpp"
 
-#include <cstdlib>
+#include <cstdlib> // srand
+#include <ctime> // time
+#include <iostream> // cout
 
 
 int	main(void) {
@@ -25,7 +27,7 @@ int	main(void) {
 
 	Bureaucrat	bob("Robert", 1);
 	Intern		someRandomIntern;
-	Form*		form;
+	AForm*		form;
 
 	{
 		form = someRandomIntern.makeForm("presidential pardon", "Joe Mama");
@@ -33,6 +35,7 @@ int	main(void) {
 			bob.signForm(*form);
 			bob.executeForm(*form);
 		}
+		std::cout << "-----------" << std::endl;
 	}
 
 
@@ -42,6 +45,7 @@ int	main(void) {
 			bob.signForm(*form);
 			bob.executeForm(*form);
 		}
+		std::cout << "-----------" << std::endl;
 	}
 
 
@@ -51,6 +55,7 @@ int	main(void) {
 			bob.signForm(*form);
 			bob.executeForm(*form);
 		}
+		std::cout << "-----------" << std::endl;
 	}
 
 

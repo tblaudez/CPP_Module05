@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 15:37:13 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 16:43:41 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:42:23 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-#include <cstdlib>
+#include <cstdlib> // srand
+#include <ctime> // time
+#include <iostream> // cerr
 
 
 int	main(void) {
@@ -25,18 +27,22 @@ int	main(void) {
 	try
 	{
 		Bureaucrat				bob("Robert", 24);
-		PresidentialPardonForm	presidentialPardon("Larry");
-		RobotomyRequestForm		robotomyRequest("Henry");
-		ShrubberyCreationForm	shrubberyCreation("Living_room");
 
-		bob.signForm(presidentialPardon);
-		bob.executeForm(presidentialPardon);
+		PresidentialPardonForm	pp("Larry");
+		std::cout << pp << std::endl;
+		RobotomyRequestForm		rr("Henry");
+		std::cout << rr << std::endl;
+		ShrubberyCreationForm	sc("Living_room");
+		std::cout << sc << std::endl;
 
-		bob.signForm(robotomyRequest);
-		bob.executeForm(robotomyRequest);
+		bob.signForm(pp);
+		bob.executeForm(pp);
 
-		bob.signForm(shrubberyCreation);
-		bob.executeForm(shrubberyCreation);
+		bob.signForm(rr);
+		bob.executeForm(rr);
+
+		bob.signForm(sc);
+		bob.executeForm(sc);
 	}
 	catch (std::exception& e) {
 

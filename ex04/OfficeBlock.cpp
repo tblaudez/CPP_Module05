@@ -6,22 +6,18 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 13:10:18 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/01 13:43:59 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:36:52 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OfficeBlock.hpp"
 
-
-OfficeBlock::OfficeBlock() : _signingBureaucrat(NULL), _executingBureaucrat(NULL),
-_intern(NULL) {
-
-}
+#include <iostream> // cout
 
 
-OfficeBlock::OfficeBlock(Bureaucrat& signingBureaucrat, Bureaucrat& executingBureaucrat,
-Intern& intern) : _signingBureaucrat(&signingBureaucrat),
-_executingBureaucrat(&executingBureaucrat), _intern(&intern) {
+OfficeBlock::OfficeBlock(Bureaucrat* signingBureaucrat, Bureaucrat* executingBureaucrat,
+Intern* intern) : _signingBureaucrat(signingBureaucrat),
+_executingBureaucrat(executingBureaucrat), _intern(intern) {
 
 }
 
@@ -49,14 +45,6 @@ OfficeBlock::~OfficeBlock() {
 }
 
 
-std::ostream&	operator<<(std::ostream& o, OfficeBlock const& i) {
-
-	(void)i;
-	o << "Office Block, ready to roll";
-	return o;
-}
-
-
 void	OfficeBlock::setSigningBureaucrat(Bureaucrat* bureaucrat) {
 
 	this->_signingBureaucrat = bureaucrat;
@@ -77,17 +65,19 @@ void	OfficeBlock::setIntern(Intern* intern) {
 
 void	OfficeBlock::doBureaucracy(std::string const& formName, std::string const& target) {
 
+	std::cout << "-------- Form Start --------" << std::endl;
+
 	this->_check_workers();
 
 	AForm*	form = this->_intern->makeForm(formName, target);
 	if (form == NULL) {
-		throw OfficeBlock::UnknownFormException("The form <" + formName + "> is unknown");
+		throw OfficeBlock::UnknownFormException("Unknown form name : " + formName);
 	}
 
 	this->_signingBureaucrat->signForm(*form);
 	this->_executingBureaucrat->executeForm(*form);
 
-	std::cout << "-------- Form Complete --------" << std::endl;
+	std::cout << "-------- Form Complete --------" << std::endl << std::endl;
 }
 
 

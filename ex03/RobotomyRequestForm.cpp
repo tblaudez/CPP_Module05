@@ -6,23 +6,24 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 15:55:07 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:08:12 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:57:58 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-#include <cstdlib>
+#include <iostream> // cout
+#include <cstdlib> // rand
 
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) :
-Form("RobotomyRequestForm", 72, 45), _target(target) {
+RobotomyRequestForm::RobotomyRequestForm(std::string const& target) :
+AForm("RobotomyRequestForm", 72, 45), _target(target) {
 
 }
 
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const& src) :
-Form(src) {
+AForm(src) {
 
 	*this = src;
 }
@@ -31,7 +32,7 @@ Form(src) {
 RobotomyRequestForm&	RobotomyRequestForm::operator=(RobotomyRequestForm const& rhs) {
 
 	if (this != &rhs) {
-		Form::operator=(rhs);
+		AForm::operator=(rhs);
 		this->_target = rhs._target;
 	}
 
@@ -46,7 +47,8 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 
 std::ostream&	operator<<(std::ostream& o, RobotomyRequestForm const& i) {
 
-	o << "RobotomyRequestForm targeted to " << i.getTarget() << std::endl;
+	o << static_cast<AForm const&>(i);
+	o << " - Target : " << i.getTarget();
 	return o;
 }
 
@@ -64,7 +66,8 @@ void				RobotomyRequestForm::_action() const {
 	if (rand() % 2 == 0) {
 		std::cout << this->_target << " has been successfuly robotomized!"
 		<< std::endl;
-	} else {
+	}
+	else {
 		std::cout << "The operation is a failure.." << std::endl;
 	}
 }

@@ -6,32 +6,32 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 16:02:04 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:07:07 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:11:52 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 
-class ShrubberyCreationForm : public Form {
+class ShrubberyCreationForm : public AForm {
 
 public:
 
 	ShrubberyCreationForm(std::string target="target");
 	ShrubberyCreationForm(ShrubberyCreationForm const& src);
 	ShrubberyCreationForm& operator=(ShrubberyCreationForm const& rhs);
-	~ShrubberyCreationForm();
+	virtual ~ShrubberyCreationForm();
 
 	std::string const&	getTarget() const;
 
 private:
 
-	std::string	_target;
-
 	virtual void	_action() const;
+
+	std::string		_target;
 
 };
 

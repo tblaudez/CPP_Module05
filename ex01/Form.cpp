@@ -6,23 +6,21 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 13:56:47 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 14:42:22 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 11:59:13 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-#include <iostream>
 
-
-Form::Form(std::string name, int signingGrade, int executingGrade) : _name(name),
+Form::Form(std::string const& name, int signingGrade, int executingGrade) : _name(name),
 _signingGrade(signingGrade), _executingGrade(executingGrade), _signed(false) {
 
 	this->_checkGrade();
 }
 
 
-Form::Form(Form const& src) : _signingGrade(src._signingGrade),
+Form::Form(Form const& src) : _name(src._name), _signingGrade(src._signingGrade),
 _executingGrade(src._executingGrade) {
 
 	*this = src;
@@ -32,7 +30,6 @@ _executingGrade(src._executingGrade) {
 Form&	Form::operator=(Form const& rhs) {
 
 	if (this != &rhs) {
-		this->_name = rhs._name;
 		this->_signed = rhs._signed;
 	}
 
@@ -47,9 +44,10 @@ Form::~Form() {
 
 std::ostream&	operator<<(std::ostream& o, Form const& i) {
 
-	o << "Form <" << i.getName() << "> - Signing Grade : " << i.getSigningGrade()
-	<< " - Executing Grade : " << i.getExecutingGrade() << " - Signed :"
-	<< i.getSigned();
+	o << "Form <" << i.getName()
+	<< "> - Signing Grade : " << i.getSigningGrade()
+	<< " - Executing Grade : " << i.getExecutingGrade()
+	<< " - Signed :" << i.getSigned();
 	return o;
 }
 
@@ -94,7 +92,8 @@ void				Form::_checkGrade() const {
 	if (this->_signingGrade < 1 || this->_executingGrade < 1) {
 		throw Form::GradeTooHighException("Form <" + this->_name
 			+ "> has a grade below 1");
-	} else if (this->_signingGrade > 150 || this->_executingGrade > 150) {
+	}
+	else if (this->_signingGrade > 150 || this->_executingGrade > 150) {
 		throw Form::GradeTooLowException("Form <" + this->_name
 			+ "> has a grade above 150");
 	}

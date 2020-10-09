@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Form.hpp                                           :+:    :+:            */
+/*   AForm.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 13:47:29 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:06:37 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:00:19 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 #include "Bureaucrat.hpp"
 
-#include <iostream>
-#include <string>
-#include <stdexcept>
+#include <stdexcept> // runtime_error
+#include <string> // duh..
+#include <ostream> // duh..
 
 
-class Form {
+class AForm {
 
 public:
 
-	Form(std::string name="Form", int signingGrade=150, int executingGrade=150);
-	Form(Form const& src);
-	Form& operator=(Form const& rhs);
-	virtual ~Form();
+	AForm(std::string const& name="AForm", int signingGrade=150, int executingGrade=150);
+	AForm(AForm const& src);
+	AForm& operator=(AForm const& rhs);
+	virtual ~AForm();
 
 	std::string const&	getName() const;
 	int					getSigningGrade() const;
@@ -57,15 +57,14 @@ public:
 
 private:
 
-	std::string	_name;
-	int const	_signingGrade;
-	int const	_executingGrade;
-	bool		_signed;
-
 	void				_checkGrade() const;
 	virtual void		_action() const = 0;
 
+	std::string const	_name;
+	int const			_signingGrade;
+	int const			_executingGrade;
+	bool				_signed;
 
 };
 
-std::ostream&	operator<<(std::ostream& o, Form const& i);
+std::ostream&	operator<<(std::ostream& o, AForm const& i);

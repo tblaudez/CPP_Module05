@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 15:19:51 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 12:37:40 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:08:50 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class PresidentialPardonForm : public ATargetedForm {
 
 public:
 
-	PresidentialPardonForm(std::string target="target");
+	PresidentialPardonForm(std::string const& target="target");
 	PresidentialPardonForm(PresidentialPardonForm const& src);
 	PresidentialPardonForm& operator=(PresidentialPardonForm const& rhs);
 	virtual ~PresidentialPardonForm();

@@ -6,17 +6,17 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 16:03:58 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 12:42:47 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:26:27 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-#include <fstream>
+#include <fstream> // ofstream
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
-ATargetedForm("Shrubbery Creation Form", 145, 137, target) {
+ATargetedForm("ShrubberyCreationForm", 145, 137, target) {
 
 }
 

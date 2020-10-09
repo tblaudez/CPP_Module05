@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/30 11:03:41 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:32:34 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:48:10 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,3 @@ private:
 	AForm*	_makeShrubberyCreationForm(std::string const& target) const;
 
 };
-
-std::ostream&	operator<<(std::ostream& o, Intern const& i);

@@ -6,15 +6,14 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:59:45 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 14:42:39 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:42:47 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-#include <iostream>
-#include <sstream>
+#include <iostream> // cout
 
 
 Bureaucrat::Bureaucrat(std::string const& name, int grade) : _name(name),
@@ -47,7 +46,7 @@ Bureaucrat::~Bureaucrat() {
 
 std::ostream&	operator<<(std::ostream& o, Bureaucrat const& i) {
 
-	o << "(<" << i.getName() << "> [Grade: " << i.getGrade() << "])";
+	o << i.getName() << ", bureaucrat grade " << i.getGrade() << std::endl;
 	return o;
 }
 
@@ -80,30 +79,23 @@ void				Bureaucrat::decrementGrade() {
 
 void				Bureaucrat::signForm(AForm& form) const {
 
-	std::cout << *this << " signs " << form << std::endl;
-
+	std::cout << this->_name << " signs form " << form << std::endl;
 	form.beSigned(*this);
 }
 
 
 void				Bureaucrat::executeForm(AForm const& form) const {
 
-	std::cout << *this << " executes " << form << std::endl;
-
+	std::cout << this->_name << " executes form " << form << std::endl;
 	form.execute(*this);
 }
 
 
 void				Bureaucrat::_check_grade() const {
 
-	std::ostringstream	oss;
-
 	if (this->_grade < 1) {
-		oss << *this << " has grade below 1";
-		throw Bureaucrat::GradeTooHighException(oss.str());
-	}
-	else if (this->_grade > 150) {
-		oss << *this << " has grade above 150";
-		throw Bureaucrat::GradeTooLowException(oss.str());
+		throw Bureaucrat::GradeTooHighException(this->_name + " has a grade below 1");
+	} else if (this->_grade > 150) {
+		throw Bureaucrat::GradeTooLowException(this->_name + " has a grade above 150");
 	}
 }

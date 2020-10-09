@@ -6,23 +6,21 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 15:54:05 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/30 11:07:03 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 12:57:42 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
-#include "Form.hpp"
-
-#include <iostream>
+#include "AForm.hpp"
 
 
-class RobotomyRequestForm : public Form {
+class RobotomyRequestForm : public AForm {
 
 public:
 
-	RobotomyRequestForm(std::string target="target");
+	RobotomyRequestForm(std::string const& target="target");
 	RobotomyRequestForm(RobotomyRequestForm const& src);
 	RobotomyRequestForm& operator=(RobotomyRequestForm const& rhs);
 	virtual ~RobotomyRequestForm();
@@ -31,9 +29,10 @@ public:
 
 private:
 
+	virtual void	_action() const;
+
 	std::string		_target;
 
-	virtual void	_action() const;
 };
 
 std::ostream&	operator<<(std::ostream& o, RobotomyRequestForm const& i);

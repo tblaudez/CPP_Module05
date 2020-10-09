@@ -6,19 +6,19 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 12:51:40 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 15:04:01 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 11:54:37 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
-#include <iostream>
-#include <stdexcept>
-#include <string>
+#include <stdexcept> // runtime_error
+#include <string> // duh..
+#include <ostream> // duh..
 
 
-class Form; // Forward declaration
+class Form; // Forward declration
 
 
 class Bureaucrat {

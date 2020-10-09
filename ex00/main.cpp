@@ -6,65 +6,78 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/09/29 13:13:15 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/09/29 13:43:58 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 13:42:10 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+#include <iostream> // cout
+
+
 int	main(void) {
 
 	// Normal run
 	{
-		try {
+		try
+		{
 			Bureaucrat	robert;
 			Bureaucrat	bob("Bob", 75);
 			Bureaucrat	james("James", 1);
 			Bureaucrat	henry("Henry", 150);
 			std::cout << "Everything is a-OK !" << std::endl;
-		} catch (std::exception& e) {
+		}
+		catch (std::exception& e) {
 			std::cerr << "Error : " << e.what() << std::endl;
 		}
 	}
 
 	// Grade too high in constructor
 	{
-		try {
+		try
+		{
 			Bureaucrat	trevor("Trevor", 0);
 			std::cout << "You should not see this" << std::endl;
-		} catch (std::exception& e) {
+		}
+		catch (std::exception& e) {
 			std::cerr << "Error : " << e.what() << std::endl;
 		}
 	}
 
 	// Grade too low in constructor
 	{
-		try {
+		try
+		{
 			Bureaucrat	trevor("Trevor", 151);
 			std::cout << "You should not see this" << std::endl;
-		} catch (std::exception& e) {
+		}
+		catch (std::exception& e) {
 			std::cerr << "Error : " << e.what() << std::endl;
 		}
 	}
 
 	// Grade too high after increment
 	{
-		try {
+		try
+		{
 			Bureaucrat	trevor("Trevor", 1);
 			std::cout << trevor;
 			trevor.incrementGrade();
-		} catch (std::exception& e) {
+		}
+		catch (std::exception& e) {
 			std::cerr << "Error : " << e.what() << std::endl;
 		}
 	}
 
 	// Grade too low after decrement
 	{
-		try {
+		try
+		{
 			Bureaucrat	trevor("Trevor", 150);
 			std::cout << trevor;
 			trevor.decrementGrade();
-		} catch (std::exception& e) {
+		}
+		catch (std::exception& e) {
 			std::cerr << "Error : " << e.what() << std::endl;
 		}
 	}
